@@ -1,4 +1,4 @@
-package com.obeast.algorithm.sum;
+package com.obeast.algorithm.array.sum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
  * @version 1.0
  * Description: 1. 两数之和
  */
-public class SumOfTwoNumbers {
+public class TwoNumSum {
     public static void main(String[] args) {
         int[] nums = {2, 7, 11, 15};
         int k = 9;

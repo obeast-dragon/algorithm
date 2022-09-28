@@ -1,4 +1,4 @@
-package com.obeast.algorithm.sum;
+package com.obeast.algorithm.array.sum;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ import java.util.*;
  * @version 1.0
  * Description: 三数之和
  */
-public class SumOfThreeNumbers {
+public class ThreeNumSum {
     public static void main(String[] args) {
 //输出：[[-1,-1,2],[-1,0,1]]
         int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
