@@ -23,14 +23,14 @@ public class ThreeNumSum {
      * Date: 2022/8/22 10:13
      */
     public static List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> resSet = new HashSet<List<Integer>>();
+        Set<List<Integer>> res = new HashSet<>();
         Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
             int fast = nums.length - 1;
             int slow = i + 1;
             while (slow < fast) {
                 if (nums[i] + nums[fast] + nums[slow] == 0) {
-                    resSet.add(new ArrayList<>(Arrays.asList(nums[i], nums[fast], nums[slow])));
+                    res.add(new ArrayList<>(Arrays.asList(nums[i], nums[fast], nums[slow])));
                     slow++;
                     fast--;
                 } else if (nums[i] + nums[fast] + nums[slow] < 0) {
@@ -40,7 +40,7 @@ public class ThreeNumSum {
                 }
             }
         }
-        return new ArrayList<>(resSet);
+        return new ArrayList<>(res);
     }
 
 
