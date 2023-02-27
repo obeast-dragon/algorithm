@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class SortTest {
     public static void main(String[] args) {
         int[] a = {4, 2, 7, 3, 9, 0, 5};
-        sortInsert(a);
+        sortMerge(a, 0, a.length - 1);
         System.out.println(Arrays.toString(a));
     }
 
@@ -30,7 +30,11 @@ public class SortTest {
         if (a == null || a.length < 2) {
             return;
         }
+//        从 0->n-1 , 1->n-1 , 2->n-1 ... n-1
+//        第一次层循环做左边界 ！！第二层循环做右边界
+
         for (int i = 0; i < a.length; i++) {
+            // minIndex 必须 赋值 为i !!! 不能 从0   数组前面减
             int minIndex = i;
             // minIndex-n-1 中找到最小的值
             for (int j = i + 1; j < a.length; j++) {
@@ -61,6 +65,8 @@ public class SortTest {
         if (a == null || a.length < 2) {
             return;
         }
+//        第一次层循环做左边界 ！！第二层循环做右边界
+//        从0->n-1 中，左右比较把最大后移 ；0->n-2 .....
         for (int i = a.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (a[j] > a[j + 1]) {
@@ -89,6 +95,8 @@ public class SortTest {
             return;
         }
 //        从0-1 =》 0-2 。。。。。 0 =》 n-1
+//        注意 ：
+//        第一次层循环做右边界 ！！第二层循环做左边界
         for (int i = 1; i < a.length; i++) {
             for (int j = i - 1; j >= 0 && a[j] > a[j + 1]; j--) {
                 swapInsert(a, j, j + 1);
@@ -102,5 +110,47 @@ public class SortTest {
         a[i] = a[i] ^ a[j];
         a[j] = a[i] ^ a[j];
         a[i] = a[i] ^ a[j];
+    }
+
+
+    public static void sortMerge  (int[] a, int l, int r) {
+        if (l == r) {
+            return;
+        }
+        int mid = l + ((r - l) >> 1);
+//      左右区间递归通过 commonMerge 排序归并
+        sortMerge(a, l, mid);
+        sortMerge(a, mid + 1, r);
+        commonMerge(a, l, mid, r);
+    }
+
+    private static void commonMerge(int[] a, int l, int mid, int r) {
+        int[] help = new int[r - l + 1];
+//      help 的索引
+        int i = 0;
+//       第一个数组的 索引
+        int p1 = l;
+//       第二个数组的 索引
+        int p2 = mid + 1;
+
+//      当两个数组都没有越界
+        while (p1 <= mid && p2 <= r){
+//          给help数组赋值 i++
+            help[i++] = a[p1] <= a[p2] ? a[p1++] : a[p2++];
+        }
+//        当 P2溢出
+        while (p1 <= mid){
+            help[i++] = a[p1++];
+        }
+        //  当 P1溢出
+
+        while (p2 <= r){
+            help[i++] = a[p2++];
+        }
+//       把help的值赋值到a[]的传入的区间中
+        for (int j = 0; j < help.length; j++) {
+            a[l + j] = help[j];
+        }
+
     }
 }
