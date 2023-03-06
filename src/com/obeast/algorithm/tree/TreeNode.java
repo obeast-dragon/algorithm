@@ -23,6 +23,36 @@ public class TreeNode {
         this.val = val;
         this.left = left;
         this.right = right;
+
+    }
+    /**
+     * Description: TODO
+     * @author wxl
+     * Date: 2023/3/6 13:28
+     * @param val val
+     * @param node node
+     * @param address  address
+     */
+    TreeNode(int val, TreeNode node, boolean address) {
+        this.val = val;
+        if (address) {
+            this.left = node;
+        }else {
+            this.right = node;
+        }
+
+    }
+
+    public void setVal(int val) {
+        this.val = val;
+    }
+
+    public void setLeft(TreeNode left) {
+        this.left = left;
+    }
+
+    public void setRight(TreeNode right) {
+        this.right = right;
     }
 
     @Override
